@@ -1,31 +1,55 @@
 "use strict";
 window.addEventListener('DOMContentLoaded', init);
 
+const width = 960;
+const height = 540;
 function init() {
-    // Our Javascript will go here.
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-    const controls = new THREE.OrbitControls(camera, document.body);
+  // サイズを指定
+  const width = 960;
+  const height = 540;
 
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
+  // renderer
+  const canvasElement = document.querySelector('#myCanvas');
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvasElement,
+  });
+  renderer.setSize(width, height);
 
-    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    const cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
+  const scene = new THREE.Scene();
 
-    camera.position.z = 5;
+  // set camera
+  const camera = new THREE.PerspectiveCamera(45, width / height);
+  camera.position.set(0, 0, +1000);
+  const controls = new THREE.OrbitControls(camera, canvasElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.2;
 
-    function animate() {
-        requestAnimationFrame( animate );
+  // Make a sphere
+  const geometry = new THREE.SphereGeometry(300, 30, 30);
+  // load image
+  const loader = new THREE.TextureLoader();
+  const texture = loader.load('imgs/earthmap.jpg');
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+  });
+  // メッシュを作成
+  const mesh = new THREE.Mesh(geometry, material);
+  // 3D空間にメッシュを追加
+  scene.add(mesh);
 
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
+  // 平行光源
+  const ambientLight = new THREE.AmbientLight(0xFFFFFF);
+  ambientLight.position.set(1, 1, 1);
+  scene.add(ambientLight);
 
-        renderer.render( scene, camera );
-    }
-    animate();
+  tick();
 
+  // 毎フレーム時に実行されるループイベントです
+  function tick() {
+    controls.update();
+    // レンダリング
+    renderer.render(scene, camera);
+
+    requestAnimationFrame(tick);
+  }
 }
