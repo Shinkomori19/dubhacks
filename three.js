@@ -57,7 +57,6 @@ function init() {
 
   // メッシュを作成
   const mesh = new THREE.Mesh(geometry, material);
-  // 3D空間にメッシュを追加
   scene.add(mesh);
 
   // 平行光源
