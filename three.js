@@ -32,6 +32,29 @@ function init() {
   const material = new THREE.MeshStandardMaterial({
     map: texture,
   });
+
+  // stars
+  const SIZE = 3000;
+  const LENGTH = 1000;
+  const vertices = [];
+  for (let i = 0; i < LENGTH; i++) {
+    const x = SIZE * (Math.random() - 0.5);
+    const y = SIZE * (Math.random() - 0.5);
+    const z = SIZE * (Math.random() - 0.5);
+
+    vertices.push(x,y,z)
+  }
+
+  const starGeometry = new THREE.BufferGeometry();
+  starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+  const starMaterial = new THREE.PointsMaterial({
+    size:8,
+    color:0xffffff,
+  });
+
+  const starMesh = new THREE.Points(starGeometry, starMaterial);
+  scene.add(starMesh);
+
   // メッシュを作成
   const mesh = new THREE.Mesh(geometry, material);
   // 3D空間にメッシュを追加
