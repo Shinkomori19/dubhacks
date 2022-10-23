@@ -67,28 +67,27 @@ function init() {
   ambientLight.position.set(1, 1, 1);
   earthScene.add(ambientLight);
 
-  // trees mesh test
-  let trees = [];
-  let pointGeometry = new  THREE.SphereBufferGeometry(0.1, 30, 30);
-  const pointMaterial = new THREE.PointsMaterial({
-    size:20,
-    color:0xff0000,
-  });
-  const pointMesh = new THREE.Points(pointGeometry, pointMaterial);
-  console.log(toXYZ(57,85));
-  pointMesh.position.set(toXYZ(57,85));
-  // pointGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(toXYZ(180,85)));
-  earthScene.add(pointMesh);
+  let dic = {}; // Key: name of the person, Value: [[lat,lon],[lat,lon],,,]
+  dic['shin'] = [[45,135],[24,172],[67,120],[120,11],[140,30]];
+  dic['lucas'] = [[35,150],[30,140],[80,100],[100,130],[110,60]];
+
+  // trees mesh
+  const shin = new THREE.Group();
+  makeGroup(dic['shin']);
+  earthScene.add(shin);
+
+  const lucas = new THREE.Group();
+  makeGroup(dic['lucas']);
+  earthScene.add(lucas);
 
   tick();
-  // let self: CanvasController = this;
 
   // executed ever frame
   function tick() {
     // control camera
     controls.update();
 
-    pointMesh.rotation.y += 0.003;
+    shin.rotation.y += 0.003;
     mesh.rotation.y += 0.003;
     // render
 
@@ -106,23 +105,43 @@ function init() {
   var selectedObject;
   var raycaster = new THREE.Raycaster();
 
-  function onclick(event) {
-  alert("onclick")
-  var mouse = new THREE.Vector2();
-  raycaster.setFromCamera(mouse, camera);
-  var intersects = raycaster.intersectObjects(planets, true); //array
-  if (intersects.length > 0) {
-  selectedObject = intersects[0];
-  alert(selectedObject);
+//   function onclick(event) {
+//   alert("onclick")
+//   var mouse = new THREE.Vector2();
+//   raycaster.setFromCamera(mouse, camera);
+//   var intersects = raycaster.intersectObjects(planets, true); //array
+//   if (intersects.length > 0) {
+//   selectedObject = intersects[0];
+//   alert(selectedObject);
+//   }
+// }
+
+
+function makeGroup(cordinatesList) {
+  for (let i = 0; i < cordinatesList.length; i++) {
+    let cordinates = cordinatesList[i];
+    let lat = cordinates[0];
+    let lon = cordinates[1];
+    const geometry = new THREE.SphereBufferGeometry(0.1, 30, 30);
+    const material = new THREE.PointsMaterial({
+      size:20,
+      color:0xff0000,
+    });
+    let xyz = toXYZ(lat,lon);
+    geometry.applyMatrix(new THREE.Matrix4().makeTranslation(xyz[0],xyz[1],xyz[2]));
+    const mesh = new THREE.Points(geometry, material);
+    mesh.position.set(0,0,0);
+    shin.add(mesh);
   }
 }
+
 
   function toXYZ(lat, lon) {
     const R = 300;
     let x = R * Math.cos(lat) * Math.cos(lon);
     let y = R * Math.cos(lat) * Math.sin(lon);
     let z = R * Math.sin(lat);
-
-    return (x,y,z);
+    let array = [x,y,z]
+    return array;
   }
 }
