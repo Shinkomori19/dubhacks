@@ -80,8 +80,18 @@ function init() {
   makeGroup(dic['lucas'],lucas);
   earthScene.add(lucas);
 
-  tick();
+  const geometoryTmp = new THREE.SphereBufferGeometry(0.1, 30, 30);
+    const materialTmp = new THREE.PointsMaterial({
+      size:20,
+      color:0x4db56a,
+    });
+    let xyzTmp = toXYZ(-170,0);
+    geometoryTmp.applyMatrix(new THREE.Matrix4().makeTranslation(xyzTmp[0],xyzTmp[1],xyzTmp[2]));
+    const meshTmp = new THREE.Points(geometoryTmp, materialTmp);
+    meshTmp.position.set(0,0,0);
+    earthScene.add(meshTmp);
 
+  tick();
   // executed ever frame
   function tick() {
     // control camera
@@ -90,6 +100,7 @@ function init() {
     shin.rotation.y += 0.003;
     lucas.rotation.y += 0.003;
     mesh.rotation.y += 0.003;
+    meshTmp.rotation.y += 0.003;
     // render
 
     scenes.forEach((scene) => {
@@ -101,9 +112,9 @@ function init() {
     requestAnimationFrame(tick);
   }
 
-  renderer.domElement.addEventListener("click", onclick, true);
-  var selectedObject;
-  var raycaster = new THREE.Raycaster();
+  // renderer.domElement.addEventListener("click", onclick, true);
+  // var selectedObject;
+  // var raycaster = new THREE.Raycaster();
 
 //   function onclick(event) {
 //   alert("onclick")
@@ -132,13 +143,14 @@ function makeGroup(cordinatesList, group) {
     mesh.position.set(0,0,0);
     group.add(mesh);
   }
-}
 
   function toXYZ(lat, lon) {
     const R = 300;
-    let x = R * Math.cos(lat) * Math.cos(lon);
-    let y = R * Math.cos(lat) * Math.sin(lon);
-    let z = R * Math.sin(lat);
+    let o = 0;
+    let a = 0;
+    let x = R * Math.cos(lon + o) * Math.sin(lat + a);
+    let y = R * Math.sin(lat + a) * Math.sin(lon + o);
+    let z = R * Math.cos(lat + a);
     let array = [x,y,z]
     return array;
   }
