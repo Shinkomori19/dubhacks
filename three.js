@@ -75,7 +75,8 @@ function init() {
     color:0xff0000,
   });
   const pointMesh = new THREE.Points(pointGeometry, pointMaterial);
-  pointMesh.position.set(301,31,31);
+  pointMesh.position.set(toXYZ(180,85));
+  // pointGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(toXYZ(180,85)));
   earthScene.add(pointMesh);
 
   tick();
@@ -86,6 +87,7 @@ function init() {
     // control camera
     controls.update();
 
+    pointMesh.rotation.y += 0.003;
     mesh.rotation.y += 0.003;
     // render
 
@@ -113,4 +115,13 @@ function init() {
   alert(selectedObject);
   }
 }
+
+  function toXYZ(lat, lon) {
+    const R = 300;
+    let x = R * Math.cos(lat) * Math.cos(lon);
+    let y = R * Math.cos(lat) * Math.sin(lon);
+    let z = R * Math.sin(lat);
+
+    return (x,y,z);
+  }
 }
