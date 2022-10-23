@@ -1,0 +1,94 @@
+body{
+	background-color: black;
+
+}
+.container{
+	width: 600px;
+	background-color: black;
+	padding-top: 100px;
+    padding-bottom: 100px;
+}
+canvas{
+    position: absolute;
+}
+.card{
+    text-align: center;
+	background-color: transparent;
+	width: 300px;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 white, 0 6px 20px 0 white;
+    margin-left: auto;
+    margin-right: auto;
+}
+img{
+    width: 250px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.name{
+	font-size: 15px;
+	color: #e3f7ff;
+	font-weight: bold;
+    margin-bottom: 1em;
+}
+.cross{
+	font-size: 11px;
+	color: #b0aeb7;
+}
+.pin{
+	font-size: 14px;
+	color: #b0aeb7;
+}
+.first{
+	border-radius: 8px;
+	border: 1.5px solid #eaf4ff;
+	color: #000;
+	background-color: transparent;
+    margin-top: 1em;
+}
+.second{
+	border-radius: 8px;
+	border: 1px solid #eaf4ff;
+	color: #000;
+	background-color: transparent;
+}
+.dot{
+
+}
+.head{
+	color: #137ff3;
+	font-size: 12px;
+}
+.dollar{
+	font-size: 18px;
+	color: #e3f7ff;
+}
+.amount{
+	color: #e3f7ff;
+	font-weight: bold;
+	font-size: 18px;
+
+}
+.form-control{
+	font-size: 18px;
+	font-weight: bold;
+	width: 60px;
+	height: 28px;
+    background-color: transparent;
+    color: #e3f7ff;
+}
+.back{
+	color: #e3f7ff;
+	font-size: 15px;
+	line-height: 73px;
+	font-weight: 400;
+}
+.button{
+	width: 150px;
+	height: 60px;
+	border-radius: 8px;
+	font-size: 17px;	
+    background-color: #727175;	
+    box-shadow: 0 5px 10px 0 white, 0 5px 10px 0 white;
+    color: white;
+}
