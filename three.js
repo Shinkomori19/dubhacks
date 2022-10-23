@@ -73,11 +73,11 @@ function init() {
 
   // trees mesh
   const shin = new THREE.Group();
-  makeGroup(dic['shin']);
+  makeGroup(dic['shin'],shin);
   earthScene.add(shin);
 
   const lucas = new THREE.Group();
-  makeGroup(dic['lucas']);
+  makeGroup(dic['lucas'],lucas);
   earthScene.add(lucas);
 
   tick();
@@ -88,6 +88,7 @@ function init() {
     controls.update();
 
     shin.rotation.y += 0.003;
+    lucas.rotation.y += 0.003;
     mesh.rotation.y += 0.003;
     // render
 
@@ -99,7 +100,6 @@ function init() {
 
     requestAnimationFrame(tick);
   }
-
 
   renderer.domElement.addEventListener("click", onclick, true);
   var selectedObject;
@@ -116,8 +116,7 @@ function init() {
 //   }
 // }
 
-
-function makeGroup(cordinatesList) {
+function makeGroup(cordinatesList, group) {
   for (let i = 0; i < cordinatesList.length; i++) {
     let cordinates = cordinatesList[i];
     let lat = cordinates[0];
@@ -131,10 +130,9 @@ function makeGroup(cordinatesList) {
     geometry.applyMatrix(new THREE.Matrix4().makeTranslation(xyz[0],xyz[1],xyz[2]));
     const mesh = new THREE.Points(geometry, material);
     mesh.position.set(0,0,0);
-    shin.add(mesh);
+    group.add(mesh);
   }
 }
-
 
   function toXYZ(lat, lon) {
     const R = 300;
