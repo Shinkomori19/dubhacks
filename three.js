@@ -90,7 +90,8 @@ function init() {
   renderer.domElement.addEventListener("click", onclick, true);
   var selectedObject;
   var raycaster = new THREE.Raycaster();
- // function onclick(event) {
+
+  function onclick(event) {
   alert("onclick")
   var mouse = new THREE.Vector2();
   raycaster.setFromCamera(mouse, camera);
@@ -99,4 +100,5 @@ function init() {
   selectedObject = intersects[0];
   alert(selectedObject);
   }
+}
 }
