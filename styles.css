@@ -46,12 +46,12 @@ body{
     height: auto;
     top: 50%;
     left: 0%;
-    transform: translateY(-50%);
+    transform: translate(0.5em, -12em);
 }
 
 .title{
     color: rgb(231, 231, 231);
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
 .title h1{
@@ -66,7 +66,7 @@ body{
     font-weight: 400;
     color: rgb(177, 177, 177);
     width: 85%;
-    margin: 1rem 1rem;
+    margin: 1em 0.5em;
 }
 
 .btn{
@@ -98,7 +98,11 @@ form {
   width: 30rem;
   background: var(--color-brand);
   border-radius: var(--rad);
-  transform: translate(2rem, 29rem);
+  transform: translate(2rem, 23rem);
+  
+}
+#search{
+    border: 1em;
 }
 input, button {
   height: var(--height);
@@ -147,34 +151,56 @@ label {
 
 /* Tree information */
 .tree-info-container {
+    position: absolute;
+    text-transform: uppercase;
     color: white;
     font-family: 'Poppins', sans-serif;
-    transform: translate(4rem, 10rem);
+    background-color: transparent;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 white, 0 6px 20px 0 white;
+    padding: 1em;
+    padding-right: 0em;
+    width: 27em;
+    transform: translate(3em, 2.75em);
 }
 
 .tree-info-container ul {
     display: none;
     list-style: none;
+    font-size: 90%;
+}
+#name-num{
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .tree-name {
-    font-size: 20px;
+    font-size: 18px;
+    padding: auto;
 }
 
 .tree-name:hover + ul {
     display: block;
 }
 
-#tree1:hover ~ #tree2{
+#tree1:hover ~ .tree-name:not(#tree1){
+    display: none;
+}
+#tree2:hover ~ .tree-name:not(#tree2){
+    display: none;
+}
+#tree3:hover ~ .tree-name:not(#tree3){
+    display: none;
+}
+#tree4:hover ~ .tree-name:not(#tree4){
+    display: none;
+}
+#tree5:hover ~ .tree-name:not(#tree5){
     display: none;
 }
 
 .hide {
     display: none;
-}
-
-.show {
-    display: block;
 }
 
 /* Tree information ends*/
@@ -223,7 +249,7 @@ label {
     }
 
     .title-container{
-        width: 60%;
+        width: 45%;
     }
 
     .title h1{
