@@ -69,7 +69,6 @@ function init() {
   ambientLight.position.set(1, 1, 1);
   earthScene.add(ambientLight);
 
-
   let dic = {}; // Key: name of the person, Value: [[lat,lon],[lat,lon],,,]
   let nameGroup = {};
   dic['shin'] = [[-40,-50],[-45,-120],[-60,-50],[135,90],[-53,-65]];
