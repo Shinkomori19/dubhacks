@@ -8,14 +8,15 @@
 		<script src="three.js"></script>
 		<title>Project: Dubhacks</title>
 	</head>
+	<nav class="navigation">
+		<ul class="nav-menu">
+			<li class="nav-items"><a href="#">Home</a></li>
+			<li class="nav-items"><a href="donate.html" target="_blank">Donate</a></li>
+		</ul>
+	</nav>
 	<body>
 		<div class="container">
-			<nav class="navigation">
-				<ul class="nav-menu">
-					<li class="nav-items"><a href="#">Home</a></li>
-					<li class="nav-items"><a href="donate.html">Donate</a></li>
-				</ul>
-			</nav>
+			
 
 			<div class="title-container">
 				<div class="title">
@@ -30,7 +31,7 @@
 			<div class="search-bar">
 				<form onsubmit="event.preventDefault();" role="search" autocomplete="off">
 
-					<label for="search">Search for stuff</label>
+					<label for="search">Search for your trees</label>
 					<input id="search" type="search" placeholder="Look up your name..." autofocus required />
 					<button class="btn" type="submit">Go</button>
 				</form>

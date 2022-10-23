@@ -12,7 +12,6 @@ body{
     height: 100%;
 }
 
-
 .container{
     position: absolute;
     top: 0%;
@@ -98,7 +97,7 @@ form {
   width: 30rem;
   background: var(--color-brand);
   border-radius: var(--rad);
-  transform: translate(2rem, 23rem);
+  transform: translate(2rem, 17.5rem);
   
 }
 #search{
@@ -161,7 +160,7 @@ label {
     padding: 1em;
     padding-right: 0em;
     width: 27em;
-    transform: translate(3em, 2.75em);
+    transform: translate(3em, 1.25em);
 }
 
 .tree-info-container ul {
