@@ -51,7 +51,7 @@ function init() {
   const starGeometry = new THREE.BufferGeometry();
   starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
   const starMaterial = new THREE.PointsMaterial({
-    size:5,
+    size:8,
     color:0xffffff,
   });
 
