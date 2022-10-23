@@ -143,6 +143,7 @@ function makeGroup(cordinatesList, group) {
     mesh.position.set(0,0,0);
     group.add(mesh);
   }
+}
 
   function toXYZ(lat, lon) {
     const R = 300;
