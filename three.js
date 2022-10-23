@@ -73,12 +73,10 @@ function init() {
 
   // trees mesh
   const shin = new THREE.Group();
-  makeGroup(dic['shin'],shin);
-  earthScene.add(shin);
+  makeGroup('shin',shin);
 
   const lucas = new THREE.Group();
-  makeGroup(dic['lucas'],lucas);
-  earthScene.add(lucas);
+  makeGroup('lucas',lucas);
 
   const geometoryTmp = new THREE.SphereBufferGeometry(0.1, 30, 30);
     const materialTmp = new THREE.PointsMaterial({
@@ -127,9 +125,9 @@ function init() {
 //   }
 // }
 
-function makeGroup(cordinatesList, group) {
-  for (let i = 0; i < cordinatesList.length; i++) {
-    let cordinates = cordinatesList[i];
+function makeGroup(key, group) {
+  for (let i = 0; i < dic[key].length; i++) {
+    let cordinates = dic[key][i];
     let lat = cordinates[0];
     let lon = cordinates[1];
     const geometry = new THREE.SphereBufferGeometry(0.1, 30, 30);
@@ -143,6 +141,7 @@ function makeGroup(cordinatesList, group) {
     mesh.position.set(0,0,0);
     group.add(mesh);
   }
+  earthScene.add(group);
 }
 
   function toXYZ(lat, lon) {
