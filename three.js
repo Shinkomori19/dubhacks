@@ -64,15 +64,21 @@ function init() {
 
   tick();
 
-  // 毎フレーム時に実行されるループイベントです
+  // let self: CanvasController = this;
+
+  // executed ever frame
   function tick() {
+    // control camera
     controls.update();
-    // レンダリング
-    renderer.render(scene, camera);
 
-    requestAnimationFrame(tick);
-  }
+    mesh.rotation.y += 0.003;
+    // render
 
+    scenes.forEach((scene) => {
+      renderer.clearDepth();
+      renderer.render(scene, camera);
+    }
+    );
   renderer.domElement.addEventListener("click", onclick, true);
   var selectedObject;
   var raycaster = new THREE.Raycaster();
