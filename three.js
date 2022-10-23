@@ -109,6 +109,12 @@ function init() {
     const value = e.target.value.toLowerCase()
     console.log(value)
 
+    let tree1 = document.getElementById("tree1")
+    let tree2 = document.getElementById("tree2")
+    let tree3 = document.getElementById("tree3")
+    let tree4 = document.getElementById("tree4")
+    let tree5 = document.getElementById("tree5")
+    let container = document.getElementById("tree-container")
     //check input of search bar
     if(value in nameGroup) {
       // make all invisible
@@ -118,29 +124,31 @@ function init() {
       let p = document.getElementById("name-num");
       p.textContent = name + ", you planted " + dic[name].length + " trees!!";
 
-      let tree1 = document.getElementById("tree1")
+      
       tree1.classList.remove("hide");
-      let tree2 = document.getElementById("tree2")
       tree2.classList.remove("hide");
-      let tree3 = document.getElementById("tree3")
       tree3.classList.remove("hide");
-      let tree4 = document.getElementById("tree4")
       tree4.classList.remove("hide");
-      let tree5 = document.getElementById("tree5")
       tree5.classList.remove("hide");
+      container.classList.remove("hide");
 
     }else if(value == ""){
       for (let name in nameGroup){
         nameGroup[name].visible = true;
       }
-      let treeLists = document.getElementById("tree-name");
-      treeLists.classList.remove("hide");
+      
     }else{
       for (let name in nameGroup){
         nameGroup[name].visible = false;
       }
       let p = document.getElementById("name-num")
       p.textContent = ""
+      tree1.classList.add("hide");
+      tree2.classList.add("hide");
+      tree3.classList.add("hide");
+      tree4.classList.add("hide");
+      tree5.classList.add("hide");
+      container.classList.add("hide");
     }
   })
 

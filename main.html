@@ -13,22 +13,22 @@
 			<nav class="navigation">
 				<ul class="nav-menu">
 					<li class="nav-items"><a href="#">Home</a></li>
-					<li class="nav-items"><a href="#">About</a></li>
+					<li class="nav-items"><a href="donate.html">Donate</a></li>
 				</ul>
 			</nav>
 
 			<div class="title-container">
 				<div class="title">
 					<h1>Thank you for your contribution</h1>
-					<p>Thank the people for planting trees etc etc.</p>
-					<button class="btn">Find your trees</button>
+					<p>Your efforts to keep the Earth green should be remembered. Type your name to see more about the trees you planted.</p>
+					
 				</div>
 			</div>
 		</div>
 
 		<div class="search-bar-container">
 			<div class="search-bar">
-				<form onsubmit="event.preventDefault();" role="search">
+				<form onsubmit="event.preventDefault();" role="search" autocomplete="off">
 
 					<label for="search">Search for stuff</label>
 					<input id="search" type="search" placeholder="Search..." autofocus required />
@@ -37,46 +37,38 @@
 			</div>
 		</div>
 
-		<div class="tree-info-container title-container">
+		<div class="tree-info-container title-container hide" id = "tree-container">
 			<p id="name-num"></p>
-				<div class="tree">
-					<p class="tree-name hide" id="tree1">Tree1</p>
+				<div id="tree">
+					<p class="tree-name hide" id="tree1">Tree 1</p>
 					<ul>
 						<li>Year planted: 2014</li>
 						<li>Place: Egypt</li>
 						<li>Type of tree: Palm Tree</li>
 					</ul>
-				</div>
-
-				<div class="tree">
-					<p class="tree-name hide" id="tree2">Tree2</p>
+				
+					<p class="tree-name hide" id="tree2">Tree 2</p>
 					<ul id="tree2">
 						<li>Year planted: 2017</li>
 						<li>Place: Mexico</li>
 						<li>Type of tree: Poplar</li>
 					</ul>
-				</div>
 
-				<div class="tree">
-					<p class="tree-name hide" id="tree3">Tree3</p>
+					<p class="tree-name hide" id="tree3">Tree 3</p>
 					<ul>
 						<li>Year planted: 2018</li>
 						<li>Place: Japan</li>
 						<li>Type of tree: Cedar</li>
 					</ul>
-				</div>
 
-				<div class="tree">
-					<p class="tree-name hide" id="tree4">Tree4</p>
+					<p class="tree-name hide" id="tree4">Tree 4</p>
 					<ul>
 						<li>Year planted: 2018</li>
 						<li>Place: Philippines</li>
 						<li>Type of tree: Ginkgo</li>
 					</ul>
-				</div>
 
-				<div class="tree">
-					<p class="tree-name hide" id="tree5">Tree5</p>
+					<p class="tree-name hide" id="tree5">Tree 5</p>
 					<ul>
 						<li>Year planted: 2021</li>
 						<li>Place: US</li>
