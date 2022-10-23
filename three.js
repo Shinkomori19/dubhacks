@@ -1,8 +1,6 @@
 "use strict";
 window.addEventListener('DOMContentLoaded', init);
 
-const width = 960;
-const height = 540;
 function init() {
   // サイズを指定
   const width = 960;
@@ -43,9 +41,9 @@ function init() {
   const LENGTH = 1000;
   const vertices = [];
   for (let i = 0; i < LENGTH; i++) {
-    const x = SIZE * (Math.random() - 0.5);
-    const y = SIZE * (Math.random() - 0.5);
-    const z = SIZE * (Math.random() - 0.5);
+    const x = SIZE * (Math.random() - 0.5) + 10;
+    const y = SIZE * (Math.random() - 0.5)+ 10;
+    const z = SIZE * (Math.random() - 0.5)+ 10;
 
     vertices.push(x,y,z)
   }
@@ -53,7 +51,7 @@ function init() {
   const starGeometry = new THREE.BufferGeometry();
   starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
   const starMaterial = new THREE.PointsMaterial({
-    size:10,
+    size:5,
     color:0xffffff,
   });
 
@@ -87,5 +85,18 @@ function init() {
     );
 
     requestAnimationFrame(tick);
+  }
+
+  renderer.domElement.addEventListener("click", onclick, true);
+  var selectedObject;
+  var raycaster = new THREE.Raycaster();
+ // function onclick(event) {
+  alert("onclick")
+  var mouse = new THREE.Vector2();
+  raycaster.setFromCamera(mouse, camera);
+  var intersects = raycaster.intersectObjects(planets, true); //array
+  if (intersects.length > 0) {
+  selectedObject = intersects[0];
+  alert(selectedObject);
   }
 }
