@@ -116,7 +116,6 @@ function init() {
 //   }
 // }
 
-
 function makeGroup(cordinatesList) {
   for (let i = 0; i < cordinatesList.length; i++) {
     let cordinates = cordinatesList[i];
@@ -134,7 +133,6 @@ function makeGroup(cordinatesList) {
     shin.add(mesh);
   }
 }
-
 
   function toXYZ(lat, lon) {
     const R = 300;
