@@ -3,8 +3,8 @@ window.addEventListener('DOMContentLoaded', init);
 
 function init() {
   // サイズを指定
-  const width = 960;
-  const height = 540;
+  const width = canvas.width = canvas.clientWidth;;
+  const height = canvas.height = canvas.clientHeight;;
 
   // renderer
   const canvasElement = document.querySelector('#myCanvas');
