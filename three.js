@@ -75,15 +75,13 @@ function init() {
   dic['shin'] = [[45,135],[24,172],[67,120],[120,11],[140,30]];
   dic['lucas'] = [[35,150],[30,140],[80,100],[100,130],[110,60]];
   // trees mesh
+  const allDonor = new THREE.Group();
+
   const shin = new THREE.Group();
   makeGroup('shin',shin);
-  earthScene.add(shin);
-  nameGroup['shin'] = shin;
 
   const lucas = new THREE.Group();
   makeGroup('lucas',lucas);
-  earthScene.add(lucas);
-  nameGroup['lucas'] = lucas;
 
   tick();
 
@@ -111,11 +109,16 @@ function init() {
   searchInput.addEventListener("input", e => {
     const value = e.target.value
     console.log(value)
+    console.log(allDonor)
     // check input of search bar
-    if(value.toLowerCase() in nameGroup) {
-      // make all invisible
-      dict[value.toLowerCase()].visible = true;
-    }
+    // if(value.toLowerCase() in nameGroup) {
+    //   // make all invisible
+    //   nameGroup[value.toLowerCase()].visible = true;
+    // }else if(value == null){
+    //   allDonor.visible = false;
+    // }else{
+    //   allDonor.visible = true;
+    // }
   })
 
 
@@ -151,7 +154,10 @@ function makeGroup(key, group) {
     const mesh = new THREE.Points(geometry, material);
     mesh.position.set(0,0,0);
     group.add(mesh);
+    earthScene.add(group);
   }
+  nameGroup[key] = group; 
+  allDonor.add(group);
 }
 
   function toXYZ(lat, lon) {
