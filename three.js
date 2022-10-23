@@ -13,14 +13,19 @@ function init() {
   const renderer = new THREE.WebGLRenderer({
     canvas: canvasElement,
   });
+  renderer.setClearColor(0x000000);
+  renderer.autoClear = false;
+
   renderer.setSize(width, height);
 
-  const scene = new THREE.Scene();
+  const earthScene = new THREE.Scene();
+  const starScene = new THREE.Scene();
 
+  let scenes = [starScene, earthScene];
   // set camera
   const camera = new THREE.PerspectiveCamera(45, width / height);
-  camera.position.set(0, 0, +1000);
-  const controls = new THREE.OrbitControls(camera, canvasElement);
+  camera.position.set(0, +400, +1000);
+  const controls = new THREE.OrbitControls(camera, document.querySelector("body"));
   controls.enableDamping = true;
   controls.dampingFactor = 0.2;
 
@@ -48,29 +53,38 @@ function init() {
   const starGeometry = new THREE.BufferGeometry();
   starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
   const starMaterial = new THREE.PointsMaterial({
-    size:8,
+    size:10,
     color:0xffffff,
   });
 
   const starMesh = new THREE.Points(starGeometry, starMaterial);
-  scene.add(starMesh);
+  starScene.add(starMesh);
 
-  // メッシュを作成
+  // create mesh
   const mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
+  earthScene.add(mesh);
 
-  // 平行光源
+  // Light
   const ambientLight = new THREE.AmbientLight(0xFFFFFF);
   ambientLight.position.set(1, 1, 1);
-  scene.add(ambientLight);
+  earthScene.add(ambientLight);
 
   tick();
+  // let self: CanvasController = this;
 
-  // 毎フレーム時に実行されるループイベントです
+  // executed ever frame
   function tick() {
+    // control camera
     controls.update();
-    // レンダリング
-    renderer.render(scene, camera);
+
+    mesh.rotation.y += 0.003;
+    // render
+
+    scenes.forEach((scene) => {
+      renderer.clearDepth();
+      renderer.render(scene, camera);
+    }
+    );
 
     requestAnimationFrame(tick);
   }

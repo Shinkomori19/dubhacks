@@ -8,6 +8,7 @@
 
 body{
     overflow: hidden;
+    background-color: black;
 }
 
 .container{
@@ -87,7 +88,7 @@ body{
 
     .title h1{
         font-size: 1.8rem;
-    }    
+    }
 
     .title p{
         width: 100%;
