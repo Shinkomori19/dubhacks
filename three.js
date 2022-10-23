@@ -72,9 +72,9 @@ function init() {
 
   let dic = {}; // Key: name of the person, Value: [[lat,lon],[lat,lon],,,]
   let nameGroup = {};
-  dic['shin'] = [[-40,-50],[-30,-45],[-40,-110],[-45,-120],[-60,-50],[-50,-55],[-53,-65],[-50,-165]];
-  dic['lucas'] = [[-50,-80]];
-  dic['others'] = [[205,60],[210,70],[140,70],[142,78],[110,30],[109,34],[135,90],[110,14],[105,-4],[110,-14],[140,-12],[136,-20],[130,-30],[235,65],[258,40],[187,54],[193,52],[200,45],[205,58],[170,10],[190,0],[192,-3],[202,-2],[203,2],[205,33],[210,33],[200,45],[180,45],[178,54]];
+  dic['shin'] = [[-40,-50],[-45,-120],[-60,-50],[135,90],[-53,-65]];
+  dic['lucas'] = [[-50,-80],[205,60],[140,70],[105,-4],[109,34]];
+  dic['others'] = [[210,70],[142,78],[-40,-110],[-30,-45],[110,30],[-50,-55],[-50,-165],[205,58],[110,14],[110,-14],[140,-12],[136,-20],[130,-30],[235,65],[258,40],[187,54],[193,52],[200,45],[170,10],[190,0],[192,-3],[202,-2],[203,2],[205,33],[210,33],[200,45],[180,45],[178,54]];
 
   //works;
   const shin = new THREE.Group();
@@ -148,9 +148,6 @@ function init() {
     }
   })
 
-
-
-
   renderer.domElement.addEventListener("click", onclick, true);
   var selectedObject;
   var raycaster = new THREE.Raycaster();
@@ -171,19 +168,19 @@ function makeGroup(key, group) {
     let cordinates = dic[key][i];
     let lat = cordinates[0];
     let lon = cordinates[1];
-    // const geometry = new THREE.SphereGeometry(0.1, 30, 30);
-    // const material = new THREE.PointsMaterial({
-    //   size:20,
-    //   color:0x00FFFF,
-    // });
+    const geometry = new THREE.SphereGeometry(3, 15, 15);
+    const material = new THREE.PointsMaterial({
+      size:8,
+      color:0x00FFFF,
+    });
 
-    // let xyz = toXYZ(lat,lon);
-    // geometry.applyMatrix(new THREE.Matrix4().makeTranslation(xyz[0],xyz[1],xyz[2]));
-    // const mesh = new THREE.Points(geometry, material);
-    // mesh.position.set(0,0,0);
-    // group.add(mesh);
+    let xyz = toXYZ(lat,lon);
+    geometry.applyMatrix(new THREE.Matrix4().makeTranslation(xyz[0],xyz[1],xyz[2]));
+    const mesh = new THREE.Points(geometry, material);
+    mesh.position.set(0,0,0);
+    group.add(mesh);
 
-
+    // ICONS
     // let xyz = toXYZ(lat,lon);
     // const geometry = new THREE.SphereGeometry(0.1, 30, 30);
     // const material = new THREE.PointsMaterial({
@@ -194,22 +191,8 @@ function makeGroup(key, group) {
     // const mesh = new THREE.Points(geometry, material);
     // mesh.position.set(0,0,0);
     // group.add(mesh);
-    // group.add(mesh);
-
-    const loader = new GLTFLoader();
-    loader.load('imgs/scene.glb', function(gltf) {
-        model = gltf.scene;
-        model.traverse((object) => { //モデルの構成要素
-            if(object.isMesh) { //その構成要素がメッシュだったら
-            object.material.trasparent = true;//透明許可
-            object.material.opacity = 0.8;//透過
-            object.material.depthTest = true;//陰影で消える部分
-            }})
-        scene.add(model);
-    }, undefined, function(e) {
-        console.error(e);
-    });
   }
+  earthScene.add(group);
 }
 
   function toXYZ(lat, lon) {
