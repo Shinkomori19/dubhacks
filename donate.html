@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="donate.css">
+        <script src="https://unpkg.com/three@0.140.2/build/three.min.js"></script>
+		<script src="https://unpkg.com/three@0.137.4/examples/js/controls/OrbitControls.js"></script>
+		<script src="three.js"></script>
+		<title>Donate</title>
+	</head>
+    <body>
+
+        <canvas id="myCanvas"></canvas>
+        
+        <div class="container d-flex justify-content-center mt-5">
+            <div class="card">
+                <div>
+                    <div class="d-flex pt-3 pl-3">
+                    <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" width="60" height="80" /></div>
+                    <div class="mt-3 pl-2"><span class="name">Dubs UWer</span><div><span class="cross"></span><span class="pin ml-2"></span></div></div>
+                    </div>
+
+
+                    <div class="py-2  px-3">
+                        <div class="first pl-2 d-flex py-2">
+                        <div class="form-check">
+                        <input type="radio" name="optradio" class="form-check-input mt-3 dot" checked>
+                        </div>
+                        <div class="border-left pl-2"><span class="head">Recommended Amount</span><div><span class="dollar">$</span><span class="amount">10</span></div></div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="py-2  px-3">
+                        <div class="second pl-2 d-flex py-2">
+                        <div class="form-check">
+                        <input type="radio" name="optradio" class="form-check-input mt-3 dot">
+                        </div>
+                        <div class="border-left pl-2"><span class="head">Other amount</span><div class="d-flex"><span class="dollar">$</span><input type="text" name="text" class="form-control ml-1" placeholder="0"></div></div>
+
+                        </div> 
+                    </div>	
+
+
+                        <div class="d-flex justify-content-between px-3 pt-4 pb-3">
+                            <div><span class="back"><a href="https://www.google.com">Go back</a></span></div>
+                            <button type="button" class="btn btn-primary button">Pay amount</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
