@@ -12,11 +12,6 @@ body{
     height: 100%;
 }
 
-/* #myCanvas{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-} */
 
 .container{
     position: absolute;
@@ -71,12 +66,12 @@ body{
     font-weight: 400;
     color: rgb(177, 177, 177);
     width: 85%;
-    margin: 1rem 0;
+    margin: 1rem 1rem;
 }
 
 .btn{
     padding: 0.5rem 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     border: none;
     border-radius: 3rem;
     font-family: 'Poppins', sans-serif;
@@ -99,10 +94,11 @@ body{
   --bez: cubic-bezier(0, 0, 0.43, 1.49);
 }
 form {
-  position: relative;
+  position: absolute;
   width: 30rem;
   background: var(--color-brand);
   border-radius: var(--rad);
+  transform: translate(2rem, 29rem);
 }
 input, button {
   height: var(--height);
