@@ -2,9 +2,11 @@
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
+  const searchInput = document.getElementById("search");
   // サイズを指定
   const width = 2000;
   const height = 900;
+
 
   // renderer
   const canvasElement = document.querySelector('#myCanvas');
@@ -90,6 +92,8 @@ function init() {
     shin.rotation.y += 0.003;
     lucas.rotation.y += 0.003;
     mesh.rotation.y += 0.003;
+    
+
     // render
 
     scenes.forEach((scene) => {
@@ -100,6 +104,22 @@ function init() {
 
     requestAnimationFrame(tick);
   }
+  //search input updater
+  searchInput.addEventListener("input", e => {
+    const value = e.target.value
+    console.log(value)
+    // check input of search bar
+    if(value.toLowerCase() == "lucas"){
+      lucas.visible = true;
+      shin.visible = false;
+    }else if (value.toLowerCase() == "shin"){
+      lucas.visible = false;
+      shin.visible = true;
+    }else{
+      shin.visible = true;
+      lucas.visible = true;
+    }
+  })
 
   renderer.domElement.addEventListener("click", onclick, true);
   var selectedObject;
