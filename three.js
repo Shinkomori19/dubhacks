@@ -69,18 +69,21 @@ function init() {
   ambientLight.position.set(1, 1, 1);
   earthScene.add(ambientLight);
 
+
   let dic = {}; // Key: name of the person, Value: [[lat,lon],[lat,lon],,,]
+  let nameGroup = {};
   dic['shin'] = [[45,135],[24,172],[67,120],[120,11],[140,30]];
   dic['lucas'] = [[35,150],[30,140],[80,100],[100,130],[110,60]];
-
   // trees mesh
   const shin = new THREE.Group();
-  makeGroup(dic['shin'],shin);
+  makeGroup('shin',shin);
   earthScene.add(shin);
+  nameGroup['shin'] = shin;
 
   const lucas = new THREE.Group();
-  makeGroup(dic['lucas'],lucas);
+  makeGroup('lucas',lucas);
   earthScene.add(lucas);
+  nameGroup['lucas'] = lucas;
 
   tick();
 
@@ -92,7 +95,7 @@ function init() {
     shin.rotation.y += 0.003;
     lucas.rotation.y += 0.003;
     mesh.rotation.y += 0.003;
-    
+
 
     // render
 
@@ -109,17 +112,14 @@ function init() {
     const value = e.target.value
     console.log(value)
     // check input of search bar
-    if(value.toLowerCase() == "lucas"){
-      lucas.visible = true;
-      shin.visible = false;
-    }else if (value.toLowerCase() == "shin"){
-      lucas.visible = false;
-      shin.visible = true;
-    }else{
-      shin.visible = true;
-      lucas.visible = true;
+    if(value.toLowerCase() in nameGroup) {
+      // make all invisible
+      dict[value.toLowerCase()].visible = true;
     }
   })
+
+
+
 
   renderer.domElement.addEventListener("click", onclick, true);
   var selectedObject;
@@ -136,9 +136,9 @@ function init() {
 //   }
 // }
 
-function makeGroup(cordinatesList, group) {
-  for (let i = 0; i < cordinatesList.length; i++) {
-    let cordinates = cordinatesList[i];
+function makeGroup(key, group) {
+  for (let i = 0; i < [key].length; i++) {
+    let cordinates = dic[key][i];
     let lat = cordinates[0];
     let lon = cordinates[1];
     const geometry = new THREE.SphereBufferGeometry(0.1, 30, 30);
