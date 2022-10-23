@@ -108,19 +108,39 @@ function init() {
   searchInput.addEventListener("input", e => {
     const value = e.target.value.toLowerCase()
     console.log(value)
-    
+
     //check input of search bar
     if(value in nameGroup) {
       // make all invisible
-      nameGroup[value.toLowerCase()].visible = true;
+      let name = value.toLowerCase()
+      nameGroup[name].visible = true;
+
+      let p = document.getElementById("name-num");
+      p.textContent = name + ", you planted " + dic[name].length + " trees!!";
+
+      let tree1 = document.getElementById("tree1")
+      tree1.classList.remove("hide");
+      let tree2 = document.getElementById("tree2")
+      tree2.classList.remove("hide");
+      let tree3 = document.getElementById("tree3")
+      tree3.classList.remove("hide");
+      let tree4 = document.getElementById("tree4")
+      tree4.classList.remove("hide");
+      let tree5 = document.getElementById("tree5")
+      tree5.classList.remove("hide");
+
     }else if(value == ""){
       for (let name in nameGroup){
         nameGroup[name].visible = true;
       }
+      let treeLists = document.getElementById("tree-name");
+      treeLists.classList.remove("hide");
     }else{
       for (let name in nameGroup){
         nameGroup[name].visible = false;
       }
+      let p = document.getElementById("name-num")
+      p.textContent = ""
     }
   })
 
@@ -159,7 +179,7 @@ function makeGroup(key, group) {
     group.add(mesh);
   }
   earthScene.add(group);
-  nameGroup[key] = group; 
+  nameGroup[key] = group;
 }
 
   function toXYZ(lat, lon) {
