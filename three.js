@@ -54,7 +54,7 @@ function init() {
   starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
   const starMaterial = new THREE.PointsMaterial({
     size:8,
-    color:0xa9ceec,
+    color:0xfffbf0,
   });
 
   const starMesh = new THREE.Points(starGeometry, starMaterial);
@@ -200,6 +200,7 @@ function makeGroup(key, group) {
     // group.add(mesh);
   }
   earthScene.add(group);
+  nameGroup[key] = group;
 }
 
   function toXYZ(lat, lon) {
