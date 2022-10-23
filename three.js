@@ -3,8 +3,8 @@ window.addEventListener('DOMContentLoaded', init);
 
 function init() {
   // サイズを指定
-  const width = 960;
-  const height = 540;
+  const width = 2000;
+  const height = 900;
 
   // renderer
   const canvasElement = document.querySelector('#myCanvas');
@@ -67,6 +67,17 @@ function init() {
   ambientLight.position.set(1, 1, 1);
   earthScene.add(ambientLight);
 
+  // trees mesh test
+  let trees = [];
+  let pointGeometry = new  THREE.SphereBufferGeometry(0.1, 30, 30);
+  const pointMaterial = new THREE.PointsMaterial({
+    size:20,
+    color:0xff0000,
+  });
+  const pointMesh = new THREE.Points(pointGeometry, pointMaterial);
+  pointMesh.position.set(301,31,31);
+  earthScene.add(pointMesh);
+
   tick();
   // let self: CanvasController = this;
 
@@ -86,6 +97,7 @@ function init() {
 
     requestAnimationFrame(tick);
   }
+
 
   renderer.domElement.addEventListener("click", onclick, true);
   var selectedObject;
