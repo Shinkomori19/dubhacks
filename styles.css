@@ -108,19 +108,19 @@ input, button {
   font-size: 1.8rem;
 }
 input[type="search"] {
-  outline: 0; 
+  outline: 0;
   width: 100%;
   background: var(--color-light);
   padding: 0 1.6rem;
   border-radius: var(--rad);
-  appearance: none; 
+  appearance: none;
   transition: all var(--dur) var(--bez);
   transition-property: width, border-radius;
   z-index: 1;
   position: relative;
 }
 button {
-  display: none; 
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -144,6 +144,42 @@ label {
 }
 /* Search bar ends */
 
+
+/* Tree information */
+.tree-info-container {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    transform: translate(4rem, 10rem);
+}
+
+.tree-info-container ul {
+    display: none;
+    list-style: none;
+}
+
+.tree-name {
+    font-size: 20px;
+}
+
+.tree-name:hover + ul {
+    display: block;
+}
+
+#tree1:hover ~ #tree2{
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+/* Tree information ends*/
+
+
 /*** making responsive ****/
 @media only screen and (max-width: 1085px){
     .nav-menu{
@@ -152,7 +188,7 @@ label {
 
     .title h1{
         font-size: 1.8rem;
-    }    
+    }
 
     .title p{
         width: 100%;

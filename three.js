@@ -69,18 +69,18 @@ function init() {
   ambientLight.position.set(1, 1, 1);
   earthScene.add(ambientLight);
 
+
   let dic = {}; // Key: name of the person, Value: [[lat,lon],[lat,lon],,,]
+  let nameGroup = {};
   dic['shin'] = [[45,135],[24,172],[67,120],[120,11],[140,30]];
   dic['lucas'] = [[35,150],[30,140],[80,100],[100,130],[110,60]];
-
   // trees mesh
+
   const shin = new THREE.Group();
-  makeGroup(dic['shin'],shin);
-  earthScene.add(shin);
+  makeGroup('shin',shin);
 
   const lucas = new THREE.Group();
-  makeGroup(dic['lucas'],lucas);
-  earthScene.add(lucas);
+  makeGroup('lucas',lucas);
 
   tick();
 
@@ -92,7 +92,7 @@ function init() {
     shin.rotation.y += 0.003;
     lucas.rotation.y += 0.003;
     mesh.rotation.y += 0.003;
-    
+
 
     // render
 
@@ -106,20 +106,46 @@ function init() {
   }
   //search input updater
   searchInput.addEventListener("input", e => {
-    const value = e.target.value
+    const value = e.target.value.toLowerCase()
     console.log(value)
-    // check input of search bar
-    if(value.toLowerCase() == "lucas"){
-      lucas.visible = true;
-      shin.visible = false;
-    }else if (value.toLowerCase() == "shin"){
-      lucas.visible = false;
-      shin.visible = true;
+
+    //check input of search bar
+    if(value in nameGroup) {
+      // make all invisible
+      let name = value.toLowerCase()
+      nameGroup[name].visible = true;
+
+      let p = document.getElementById("name-num");
+      p.textContent = name + ", you planted " + dic[name].length + " trees!!";
+
+      let tree1 = document.getElementById("tree1")
+      tree1.classList.remove("hide");
+      let tree2 = document.getElementById("tree2")
+      tree2.classList.remove("hide");
+      let tree3 = document.getElementById("tree3")
+      tree3.classList.remove("hide");
+      let tree4 = document.getElementById("tree4")
+      tree4.classList.remove("hide");
+      let tree5 = document.getElementById("tree5")
+      tree5.classList.remove("hide");
+
+    }else if(value == ""){
+      for (let name in nameGroup){
+        nameGroup[name].visible = true;
+      }
+      let treeLists = document.getElementById("tree-name");
+      treeLists.classList.remove("hide");
     }else{
-      shin.visible = true;
-      lucas.visible = true;
+      for (let name in nameGroup){
+        nameGroup[name].visible = false;
+      }
+      let p = document.getElementById("name-num")
+      p.textContent = ""
     }
   })
+
+
+
 
   renderer.domElement.addEventListener("click", onclick, true);
   var selectedObject;
@@ -136,9 +162,9 @@ function init() {
 //   }
 // }
 
-function makeGroup(cordinatesList, group) {
-  for (let i = 0; i < cordinatesList.length; i++) {
-    let cordinates = cordinatesList[i];
+function makeGroup(key, group) {
+  for (let i = 0; i < dic[key].length; i++) {
+    let cordinates = dic[key][i];
     let lat = cordinates[0];
     let lon = cordinates[1];
     const geometry = new THREE.SphereBufferGeometry(0.1, 30, 30);
@@ -152,6 +178,8 @@ function makeGroup(cordinatesList, group) {
     mesh.position.set(0,0,0);
     group.add(mesh);
   }
+  earthScene.add(group);
+  nameGroup[key] = group;
 }
 
   function toXYZ(lat, lon) {
